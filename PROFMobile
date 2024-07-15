@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[PROF] Central de Aplicações Mobile</title>
+    <link rel="shortcut icon" href="https://www.habbo.com.br/habbo-imaging/badge/b09204s43131s50134s17013s17015e67ac4b5a387bfeccd908069913929bc.gif" type="image/gif">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>   
+          html {
+        height: 100%;
+        background: linear-gradient(90deg, #380c3c, #bf74c7);
+        background-size: 200% 200%;
+        background-attachment: fixed;
+        animation: gradientAnimation 15s ease infinite;
+      }
+
+      @keyframes gradientAnimation {
+        0% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+
+        100% {
+          background-position: 0% 50%;
+        }
+      }   
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    min-height: 100vh; /* Para ocupar toda a altura da tela */
+    flex-direction: column; /* Para alinhar os itens verticalmente */
+}
+
+/* Estilos para o container do título */
+.title-container {
+    position: relative;
+    text-align: center;
+    margin-top: 70px; /* Espaçamento superior */
+}
+
+.title-image {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: auto;
+    z-index: 1;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.5s ease-in-out;
+}
+
+.logo {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+    z-index: 0; /* Z-index menor para o logotipo */
+    margin-bottom: -50px;
+}
+
+.logo-container {
+    position: relative;
+    display: inline-block;
+    z-index: 0;
+    transition: transform 0.3s ease; /* Transição suave de transformação */
+}
+
+.logo-container:hover {
+    transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+/* Estilos para o menu */
+#menu {
+    text-align: center;
+    position: relative;
+    z-index: 2; /* Z-index ainda maior para o menu */
+}
+
+#menu select {
+    padding: 15px 15px;
+    font-size: 14px;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+    background-color: #F8F8FF;
+
+}
+
+/* Estilos para o texto */
+#texto {
+    padding: 13px;
+    text-align: left;
+    border-radius: 10px;
+    background-color: #f8f8ff;
+    max-width: 65%;
+    font-family: 'Poppins', sans-serif;
+    white-space: pre-line;
+    margin: 10px auto;
+    opacity: 1; /* Garante que a opacidade inicial seja definida */
+}
+
+/* Estilos para o elemento de versão do aplicativo */
+.versao-app {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 2px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #ccc;
+}
+
+/* Estilos para o botão de copiar */
+.botao-copiar {
+    background-color: #bf74c7;
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-left: 10px;
+}
+
+.botao-copiar:hover {
+    background-color: #84468b;
+}
+
+.botao-copiar:active {
+    animation: pulse 1s;
+}
+
+.botao-copiar:hover {
+    transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+/* Estilos para o feedback de "copiado" */
+.copiado:before {
+    content: 'Copiado!';
+    margin-right: 5px;
+}
+
+/* Estilo para prevenir a seleção de texto */
+.no-copy {
+    user-select: none; 
+    background-color: #f8d7da;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    color: #84468b;
+}
+
+/* Animação de pulsação */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+#creditos {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 100px; /* Ajuste conforme necessário para definir a posição inicial */
+    opacity: 0; /* Começa com opacidade zero para aparecer gradualmente */
+    animation: slide-up 3s ease forwards; /* Aplica animação de subida com duração de 1 segundo */
+}
+
+/* Animação de subida */
+@keyframes slide-up {
+    from {
+        margin-top: 100px; /* Posição inicial */
+        opacity: 0; /* Opacidade inicial */
+    }
+    to {
+        margin-top: 0; /* Posição final (pode ajustar conforme necessário) */
+        opacity: 1; /* Opacidade final (totalmente visível) */
+    }
+}
+
+/* Estilos para os nomes dos criadores */
+.nome-idealizador, .nome-desenvolvedor, .nome-reestruturador {
+    margin-bottom: 2px;
+    display: block;
+    color: #ffffff;
+}
+
+/* Animação de cores para os nicks */
+.nick {
+    animation: rainbow 7s linear infinite;
+}
+
+/* Estilos para descrição e informações */
+.descricao {
+    font-style: italic;
+    color: #84468b;
+    margin-top: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 7px;
+}
+
+.informacao {
+    font-style: italic;
+    color: #84468b;
+    margin-top: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 7px;
+}
+
+/* Estilos para o texto principal */
+span.texto-principal {
+    font-size: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Container para opções */
+.option-container {
+    margin-top: 20px;
+}
+
+.option {
+    display: none;
+}
+
+/* Estilos para o cartão de boas-vindas */
+#welcome-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: auto;
+    z-index: 9999;
+}
+
+#welcome-card p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+#welcome-card strong {
+    font-weight: bold;
+}
+
+/* Estilos para o botão "OK" */
+#ok-button {
+    background-color: #bf74c7;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    font-size: 14px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#ok-button:hover {
+    background-color: #84468b;
+    transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+#ok-button:active {
+    transform: scale(0.95);
+}
+
+
+/* Estilos para o relógio */
+#clock {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    overflow: hidden;
+    padding: 10px;
+    font-size: 16px;
+    color: #ccc;
+}
+@media only screen and (max-width: 450px) {
+    .title-image {
+        top: -30px; /* Ajuste menor para título */
+    }
+    .logo {
+        max-width: 250px; /* Ajuste menor para logo */
+    }
+    #menu select {
+        padding: 10px; /* Ajuste menor de padding para select */
+    }
+    #welvome {
+        width: 100%;
+    }
+    #texto {
+        max-width: 90%; /* Ajuste de largura máxima para telas menores */
+    }
+    .botao-copiar {
+        padding: 6px 8px; /* Ajuste menor de padding para botão copiar */
+    }
+    #creditos {
+        margin-top: 40px; /* Ajuste menor para créditos */
+    }
+    .descricao, .informacao {
+        font-size: 5px; /* Tamanho de fonte menor para descrição e informações */
+    }
+    span.texto-principal {
+        font-size: 7px; /* Tamanho de fonte menor para texto principal */
+    }
+}
+    </style>
+</head>
+<body>
+    <p id="clock"></p>
+    <div class="versao-app"> v1.1 </div>
+    <div class="container">
+        <div class="logo-container">
+          <img src="https://i.imgur.com/UKnPEtw.png" alt="Logo" class="logo" />
+        </div>
+    <div id="welcome-card">
+        <p><strong>BEM-VINDO(A)!</strong></p>
+        <p>Projeto idealizado para facilitar a aplicação de usuários mobile.</p>
+        <p>Para uma melhor experiência, use na horizontal (deitado).</p>
+        <p>Quaisquer dúvidas, erros e sugestões, contate a equipe responsável.</p>
+        <button id="ok-button">OK</button>
+    </div>
+	
+    <div id="menu">
+        <select id="seletor">
+            <option value="CURSO">Selecione a aula corretamente</option>
+            <option value="CAC">Curso de Aperfeiçoamento Comunicativo (CAC)</option>
+            <option value="CAP">Curso de Aperfeiçoamento de Praças (CAP)</option>
+            <option value="CRO">Curso de Revisão Ortográfica (CRO)</option>
+            <option value="ACL">Avaliação de Conhecimento Linguístico (ACL)</option>
+
+        </select>
+        <select id="tipoConteudo">
+			<option value="ESCOLHA">Opção</option>
+            <option value="INTRODUCAO">Introdução</option>
+            <option value="JOGO">Pelo Habbo</option>
+			<option value="SLIDE">Slide</option>
+			<option value="TEORICO">Teste Teórico</option>
+			<option value="PRATICO">Teste Prático</option>
+			<option value="APROVACAO">Aprovação</option>
+			<option value="REPROVACAO">Reprovação</option>
+			<option value="POSTAGEM">Postagem</option>
+			
+        </select>
+    </div>
+
+	<div id="conteudo">
+        <div id="texto"><center>Boa aplicação!</center></div>
+    </div>
+<br>
+    <div id="creditos">
+        <span class="nome-idealizador">Idealizado por <strong>ofranco6830</strong> & <strong>-Monteiro.</strong></span>
+        <span class="nome-desenvolvedor"><span class="nick"><i class="fa-solid fa-code"></i></span> Desenvolvido por <strong>.Lord.</strong> | <span><i class="fas fa-tools"></i></span> Revisado por <strong>Nestk.</strong> e <strong>.Brendon</strong>.</span>
+        <span class="nome-idealizador">Todos os direitos reservados à <strong>Companhia dos Professores</strong>.</span>
+    </div>
+
+    <script>
+        var scripts = {
+            CAC: {
+                INTRODUCAO: [
+                    { texto: "<strong><big>INTRODUÇÃO</big></strong>"},
+                    { texto: "Saudações! Sou membro dos Professores e irei aplicar o Curso de Aperfeiçoamento Comunicativo."},
+                    { texto: "Por isso, peço-lhe que mantenha a atenção e anote tudo que achar necessário,"},
+                    { texto: "pois ao final desta aula haverá um teste."},
+                    { texto: "Se eu sair do jogo, aguarde-me 5 minutos, mas caso não retorne, volte ao batalhão."},
+                    { texto: "Antes de prosseguirmos, você deseja receber o curso pelo Habbo Hotel ou slide? Recomendamos que os"},
+                    { texto: "jogadores via mobile assistam a aula in game, para evitar a saída do quarto/jogo."},
+                    { texto: "<strong>[Aguarde que o(a) policial responda. Caso ele(a) tiver dúvidas, retire-as.]</strong>,", noCopy: true},
+                    { texto: "<strong>[Caso o(a) policial opte pelo curso via slide, continue a partir do spoiler abaixo.]</strong>,", noCopy: true},
+                     { texto: "<strong>[Caso o(a) policial opte pelo curso via Habbo Hotel, continue a partir do spoiler: Aula via Habbo Hotel.]</strong>,", noCopy: true},
+						
+                ],
+						
+						
+                SLIDE: [
+                    { texto: "Para acessar o slide, digite em seu navegador: bit(ponto)ly/prof-cac"},
+                    { texto: "Lembre-se de trocar o (ponto) por um ponto. Quando encerrar a leitura,"},
+                    { texto: "peço que me avise para prosseguirmos."},
+                    { texto: "<strong>[Aguarde o(a) policial encerrar a leitura.]</strong>", noCopy: true},
+                    { texto: "Alguma dúvida?", descricao: "[Aguarde que o(a) policial responda. Se ele(a) tiver com dúvidas, retire-as.]"},
+                    { texto: "Antes de prosseguirmos, você deseja receber o curso pelo Habbo Hotel ou slide? Recomendamos que os"},
+                    { texto: "jogadores via mobile assistam a aula in game, para evitar a saída do quarto/jogo."},
+                    { texto: "<strong>[Aguarde que o(a) policial responda. Caso ele(a) tiver dúvidas, retire-as.]</strong>,", noCopy: true},
+                    { texto: "<strong>[Caso o(a) policial opte pelo curso via slide, continue a partir do spoiler abaixo.]</strong>,", noCopy: true},
+                     { texto: "<strong>[Caso o(a) policial opte pelo curso via Habbo Hotel, continue a partir do spoiler: Aula via Habbo Hotel.]</strong>,", noCopy: true},					 
+					
+                ],
+                JOGO: [
+                    { texto: "<strong><big>A COMUNICAÇÃO</big></strong>" },
+                    { texto: "<strong>A comunicação é uma habilidade que permite transmitir uma informação, ideia, pensamento ou emoção.</strong>" },
+                    { texto: "Na RCC, todos os policiais, principalmente os grandes líderes, devem saber se comunicar" },
+                    { texto: "adequadamente com os subalternos, pares e superiores." },
+                    { texto: "<strong>Uma informação transmitida de forma inadequada pode gerar conflitos e problemas de" },
+                    { texto: "diversas dimensões: em um grupo de tarefas, na hierarquia, contra alguém ou a favor de" },
+                    { texto: "um crime, por exemplo.</strong>" },
+                    { texto: "Para que a comunicação possa ocorrer, é necessário que haja alguns elementos, tais como:" },
+                    { texto: "<strong>1) O emissor (ou locutor) - Aquele que transmite a informação;" },
+                    { texto: "2) O receptor (ou interlocutor) - Aquele que recebe a informação enviada pelo emissor;" },
+                    { texto: "3) A mensagem - É a informação que se deseja transmitir por meio da comunicação;" },
+                    { texto: "4) O canal - Meio pelo qual a mensagem será transmitida," },
+                    { texto: "seja por meio de linguagem verbal ou não verbal.</strong>" },
+                    { texto: "Com o objetivo de fazer com que você melhore sua comunicação na polícia RCC," },
+                    { texto: "serão mostradas algumas dicas importantes para auxiliá-lo(a) em sua carreira." },
+                    { texto: "<strong>1) Busque escrever as palavras corretamente e utilize os sinais de pontuação de forma adequada;" },
+                    { texto: "2) Busque ampliar seu vocabulário por meio da leitura de livros, artigos, revistas e a partir da" },
+                    { texto: "procura de palavras novas com significados semelhantes;"},
+                    { texto: "3) Utilize exemplos para deixar mais clara a mensagem que você deseja passar ao interlocutor;" },
+                    { texto: "4) Adeque o nível de formalidade ou informalidade de sua mensagem de acordo com o contexto;" },
+                    { texto: "5) Evite interromper o raciocínio de alguém sem que haja necessidade (ouça antes de falar);" },
+                    { texto: "6) Seja direto ao se comunicar, evite rodeios desnecessários.</strong>" },
+                    { texto: "Alguma dúvida?", descricao: "[Aguarde que o(a) policial responda. Se ele(a) tiver com dúvidas, retire-as.]"},
+					{ texto: "<br>", noCopy: true},
+					{ texto: "<hr>", noCopy: true},
+					{ texto: "<strong><big>ESCRITA TÉCNICA</big></strong>" },
+                    { texto: "<strong>A escrita técnica é aplicada na redação de um documento para transmitir" },
+                    { texto: "uma informação de forma direta, coerente, simples e objetiva.</strong>" },
+                    { texto: "Durante sua carreira na instituição, você utilizará a escrita técnica para" },
+                    { texto: "enviar propostas e projetos, relatórios de acompanhamentos," },
+                    { texto: "atividades ou missões, ou até sindicâncias, se for o caso." },
+                    { texto: "Em todos estes documentos citados, é importante ter conhecimento da estrutura que você deve seguir" },
+                    { texto: "para garantir que o leitor compreenda e concorde com o que você tem a apresentar:" },
+                    { texto: "<strong>1) Introdução: Contextualize o leitor acerca da situação, da ocorrência, da proposta." },
+                    { texto: "Este trecho deve ser breve, apresentando o problema e o objetivo do que está sendo enviado." },
+                    { texto: "2) Desenvolvimento: Apresente tudo que você possui para comprovar e convencer o leitor" },
+                    { texto: "a acreditar/aceitar sobre o que está sendo relatado. São consideradas ferramentas importantes" },
+                    { texto: "para tal: capturas de tela, documentos, dados estatísticos, entrevistas, registros escritos." },
+                    { texto: "3) Conclusão: Finalize seu relatório avaliando o que foi realizado, se estava de acordo" },
+                    { texto: "com o esperado e avalie, inclusive, o seu serviço. No caso de sindicâncias, você pode indicar" },
+                    { texto: "alguma possível sanção.</strong>" },
+                    { texto: "Alguma dúvida?", descricao:"[Aguarde que o(a) policial responda. Se ele(a) tiver com dúvidas, retire-as.]"},
+                    { texto: "<strong>[Após retirar a(s) dúvida(s), você deve continuar a aplicação da aula a partir do trecho: TESTE TEÓRICO.]</strong>", noCopy: true},
+
+				],
+
+                TEORICO: [
+                    { texto: "<strong><big>TESTE TEÓRICO</big></strong>" },
+                    { texto: "O teste irá avaliar o que você aprendeu na aula. Serão 04 perguntas com limite de 1 erro. Boa sorte!"},
+                    { texto: "<strong>[Se houver mais de um(a) policial, mande-os(a) sussurrar com você.]", noCopy: true },
+                    { texto: "[Seja rígido(a) e imparcial ao avaliar as respostas. Não é preciso que estejam idênticas ao do teste teórico.]", noCopy: true},
+                    { texto: "[Caso o(a) policial erre uma questão, use de seus conhecimentos para ajudar o militar que errar, sem lhe dar a resposta.]</strong>", noCopy: true}, 						 
+                    { texto: "<strong>01. O que é comunicação?</strong>", descricao:"<strong>R.:</strong> A comunicação é a habilidade de transmitir uma informação, ideia, pensamento ou emoção."},
+                    { texto: "<strong>02. Cite, no mínimo, duas dicas para se comunicar melhor na polícia RCC.</strong>", descricao:"<strong>R.:</strong> As duas dicas ou casos citados devem estar entre os seguintes:" },
+					{ texto: "<i>1) Busque escrever as palavras corretamente e utilize os sinais de pontuação de forma adequada;", noCopy: true},
+                    { texto: "2) Busque ampliar seu vocabulário por meio da leitura de livros, artigos, revistas e a partir da", noCopy: true},
+                    { texto: "procura de palavras novas com significados semelhantes;", noCopy: true}, 						 
+                    { texto: "3) Utilize exemplos para deixar mais clara a mensagem que você deseja passar ao interlocutor;", noCopy: true},
+                    { texto: "4) Adeque o nível de formalidade ou informalidade de sua mensagem de acordo com o contexto;", noCopy: true},
+                    { texto: "5) Evite interromper o raciocínio de alguém sem que haja necessidade (ouça antes de falar);", noCopy: true}, 						 
+                    { texto: "6) Seja direto ao se comunicar, evite rodeios desnecessários.</i>", noCopy: true},
+                    { texto: "<strong>03. Quando você utilizará a escrita técnica durante sua carreira?</strong>", descricao:"<strong>R.:</strong> Durante sua carreira na instituição, você utilizará a escrita técnica para enviar propostas e projetos, relatórios de acompanhamentos, atividades ou missões, e até mesmo para enviar sindicâncias, se for o caso."},
+					{ texto: "<strong>04. Quais ferramentas são consideradas importantes para elaborar um bom desenvolvimento na escrita técnica?</strong>",descricao:"<strong>R.:</strong> São consideradas ferramentas importantes: capturas de tela, documentos, dados estatísticos, entrevistas, registros escritos."},
+				
+				],
+                
+                APROVACAO: [
+                    { texto: "Meus parabéns! Você foi aprovado(a) no Curso de Aperfeiçoamento Comunicativo (CAC)."},
+                    { texto: "Busque aprimorar a sua ortografia constantemente para ter uma boa comunicação na RCC." }, 						 
+                    { texto: "<strong>Caso o(a) aluno(a) seja sargento:</strong>", noCopy: true},
+                    { texto: "Acrescente [CAC] no final de sua missão, ou [CFS/CAC], caso tenha concluído o CFS."},
+                    { texto: "<strong>Caso o(a) aluno(a) seja secretário(a)/secretário(a)-chefe:</strong>", noCopy: true},					
+                    { texto: "Acrescente [CAC] no final de sua missão, ou [APA/CAC], caso tenha concluído a APA."},
+                    { texto: "<strong>Caso o(a) aluno(a) seja assistente ou superior:</strong>", noCopy: true},
+                    { texto: "Acrescente [CAC] no final de sua missão, ou [APA/CAC], caso tenha concluído a APA."},
+                    { texto: "<strong>[Verifique se o(a) policial acrescentou [CAC] em sua missão.]</strong>", noCopy: true},					
+                    { texto: "<strong>[Em seguida, poste o relatório no formulário da companhia e a conclusão do CAC no RCC System.]</strong>", noCopy: true},					
+				
+                ],
+                REPROVACAO: [
+                    { texto: "Infelizmente você foi reprovado(a), mas não desista!"},
+                    { texto: "Refaça a aula novamente e procure assimilar os conteúdos repassados." }, 						 
+                    { texto: "<strong>[Em seguida, poste o relatório no formulário da companhia.]</strong>", noCopy: true},
+                ],
+                POSTAGEM: [
+                    { link: "https://docs.google.com/forms/d/e/1FAIpQLSeBNvGxEX3u_pcO7cVxZ6Z-7U_-N0v95i37mHbOa3LKIX5ODw/viewform", titulo: "Poste sua aula clicando aqui." },
+                    { link: "https://system.policercc.com.br/companhia/professores", titulo: "Poste sua aula no System aqui." },	
+                    { link: "https://docs.google.com/spreadsheets/d/1L5t72kbIlRnHRp_OaOMbHdDjkOy_3QlGJdYqarhh-ac/edit?gid=1450221199#gid=1450221199", titulo: "Para conferir sua postagem." },
+                    { link: "https://docs.google.com/forms/d/e/1FAIpQLSfoB27_eFNrEIZ_esGVs1mcrm1nLiVTcuRhXPJVsVgnmT0qZQ/viewform", titulo: "Poste sua correção aqui." },
+                ],
+            },
+            CAP: {
+                INTRODUCAO: [
+                    { texto: "<strong><big>[INTRODUÇÃO]</big></strong>" },
+                    { texto: "Saudações! Sou membro dos Professores e irei aplicar o Curso de Aperfeiçoamento dos Praças." },
+                    { texto: "Por isso, peço-lhe que mantenha a atenção e anote tudo que achar necessário," },
+                    { texto: "pois ao final desta aula haverá um teste." },
+					{ texto: "Antes de prosseguirmos, você deseja receber o curso pelo Habbo Hotel ou slide? Recomendamos que os" },
+					{ texto: "jogadores via mobile assistam a aula in game, para evitar a saída do quarto/jogo." },					
+                    { texto: "Se eu sair do jogo, aguarde-me 5 minutos, mas caso não retorne, volte ao batalhão." },
+                    { texto: "<strong>[Aguarde que o(a) policial responda. Caso ele(a) tiver com dúvidas, retire-as.]", noCopy: true },
+                    { texto: "[Caso o(a) policial opte pelo curso via slide, continue a partir do spoiler abaixo.]", noCopy: true },
+                    { texto: "[Caso o(a) policial opte pelo curso via Habbo Hotel,  continue a partir do spoiler: Aula via Habbo Hotel.]</strong>", noCopy: true},
+                ],
+				
+				SLIDE: [
+                    { texto: "Para acessar o slide, digite em seu navegador: bit (ponto) ly/profscap" },
+                    { texto: "Lembre-se de trocar o (ponto) por um ponto. Quando encerrar a leitura," },
+                    { texto: "peço que me avise para prosseguirmos."},
+                    { texto: "<strong>[Aguarde o(a) policial encerrar a leitura.]</strong>", noCopy: true},
+                    { texto: "Alguma dúvida?"},
+					{ texto: "<strong>[Aguarde que o(a) policial responda. Se ele(a) tiver com dúvidas, retire-as.]", noCopy: true},
+                    { texto: "[Após retirar a(s) dúvida(s), você deve continuar a aplicação da aula a partir do trecho: TESTE TEÓRICO.]</strong>", noCopy: true},
+                ],
+				
+				JOGO: [
+                    { texto: "<strong><big>CONSTITUIÇÃO DA POLÍCIA RCC</big></strong>" },
+                    { texto: "Nossa instituição é regida por três documentos principais e seus anexos." },
+                    { texto: "As normas neles dispostas garantem a segurança, a ordem, a disciplina e a organização da polícia." },
+                    { texto: "Serão ensinadas suas características e composição. É necessário lembrar que todos os documentos" },
+                    { texto: "podem ser alterados da mesma forma que foram criados. Estude-os com frequência." },
+                    { texto: "Juntos, os documentos formam a Constituição da Polícia RCC. Vamos encontrá-los no fórum:" },
+                    { texto: "<strong>- Primeiro, entre no site policiarcc.²com/forum (sem o ²). (Avise-me ao entrar);" },
+                    { texto: "- Procure por uma área chamada: Setor Legislativo: Documentos Oficiais. (Avise-me ao encontrar).</strong>" },
+                    { texto: "Nessa área, encontrará os documentos Código de Conduta Militar, Código Penal Militar," },
+                    { texto: "o Plano de Controle Emergencial e o Código de Comando do Batalhão." },
+					{ texto: "<br>", noCopy: true},
+					{ texto: "<hr>", noCopy: true},                    
+					{ texto: "<strong><big>CÓDIGO DE CONDUTA MILITAR</big></strong>" },
+                    { texto: "O Código de Conduta Militar (CCM) é um dos principais documentos da nossa instituição, por abordar" },
+                    { texto: "um conjunto de informações que representam o que é necessário para o funcionamento da Polícia RCC." },
+                    { texto: "O CCM está dividido em Disposições Gerais, Disposições Complementares e dois anexos." },
+                    { texto: "<strong>É importante o estudo desses tópicos citados para possuir uma boa noção da constituição militar.</strong>" },
+					{ texto: "<br>", noCopy: true},
+					{ texto: "<hr>", noCopy: true},                   
+					{ texto: "<strong><big>CÓDIGO PENAL MILITAR</big></strong>" },
+                    { texto: "O Código Penal Militar (CPM) é o principal documento com relação às penalidades na RCC." },
+                    { texto: "<strong>Esse código é importantíssimo para entender como, quando e quais são as punições existentes.</strong>"},
+                    { texto: "O CPM é um documento único e conta com dois anexos." },
+					{ texto: "<br>", noCopy: true},
+					{ texto: "<hr>", noCopy: true},                    
+					{ texto: "<strong><big>PLANO DE CONTROLE EMERGENCIAL</big></strong>" },
+                    { texto: "<strong>Plano de Controle Emergencial (PCE) é de suma importância para" },
+                    { texto: "saber do que fazer em situações adversas à segurança do batalhão.</strong>" },
+                    { texto: "Você usará o PCE quando for Oficial da Guarda e acontecer uma emergência ou acidente." },
+                    { texto: "O PCE é um documento único e conta com um anexo." },
+                    { texto: "Além do PCE, o documento: Código de Comando do Batalhão, também é de extrema importância fazer a" },
+                    { texto: "leitura deste documento antes de se assumir o posto de Oficial da Guarda." },
+					{ texto: "<br>", noCopy: true},
+					{ texto: "<hr>", noCopy: true},                    
+					{ texto: "<strong><big>REGIMENTO INTERNO DO GRUPO DE TAREFAS</big></strong>" },
+                    { texto: "<strong>O Regimento Interno é o documento mais importante das companhias e subcompanhias, porque nele é" },
+                    { texto: "contido penalidades, regras e instruções.</strong>" },
+					{ texto: "<br>", noCopy: true},
+					{ texto: "<hr>", noCopy: true},                    
+                    { texto: "<strong><big>PROCURADORIA MILITAR DE JUSTIÇA</big></strong>" },
+                    { texto: "A Procuradoria Militar de Justiça (PMJ) é o órgão do Setor Judiciário que atua em prol dos militares" },
+                    { texto: "em diversos âmbitos, como na tutoria de projetos reprovados pela Corregedoria," },
+                    { texto: "na representação ou auxílio para uma sindicância em segunda instância" },
+                    { texto: "e na criação, aplicação e correção da Avaliação de Qualificação do Oficialato Intermediário," },
+                    { texto: "garantindo a competência dos oficiais intermediários e a justa distribuição" },
+                    { texto: "dos Certificados de Qualificação." },
+                    { texto: "Alguma dúvida?" },
+                    { texto: "<strong>[Aguarde que o(a) policial responda. Se ele(a) tiver com dúvidas, retire-as.]", noCopy: true },
+                    { texto: "[Após retirar a(s) dúvida(s), você deve continuar a aplicação da aula a partir do trecho: TESTE TEÓRICO.]</strong>", noCopy: true}
+					
+                ],
+                
+				TEORICO: [
+					 { texto: "<strong><big>TESTE TEÓRICO</big></strong>" },
+					 { texto: "O teste irá avaliar o que você aprendeu na aula, são 5 perguntas com limite de 2 erro. Boa sorte!"},					 					 
+					 { texto: "<strong>[Se houver mais de um(a) policial, mande-os(a) sussurrar com você.]", noCopy: true }, 						 
+					 { texto: "[Seja rígido(a) e imparcial ao avaliar as respostas. Não é preciso que estejam idênticas ao do teste teórico.]", noCopy: true},
+					 { texto: "[Caso o(a) policial erre uma questão, use de seus conhecimentos para ajudar o militar que errar, sem lhe dar a resposta.]</strong>", noCopy: true},
+					 { texto: "01. Por que o Código de Conduta Militar é um dos principais documentos da RCC?", descricao:"<strong>R.: Porque aborda um conjunto de informações que representam o que é necessário para o funcionamento da Polícia RCC.</strong>"},					 
+					 { texto: "02. Qual documento estabelece as penalidades da RCC?", descricao:"<strong>R.: O Código Penal Militar.</strong>"},
+					 { texto: "03. Em quais circunstâncias devemos acionar o Plano de Controle Emergencial?", descricao:"<strong>R.: Em situações de emergência ou acidente, as quais são descritas pelo mesmo.</strong>"},
+					 { texto: "04. O que é a Procuradoria Militar de Justiça? Cite uma de suas ações.", descricao:"<strong>R.: É o órgão do Setor Judiciário que atua em prol dos militares em diversos âmbitos, como na tutoria de projetos reprovados pela Corregedoria e na representação ou auxílio para uma sindicância em segunda instância.</strong>"},
+					 { texto: "05. Qual é o documento mais importante das companhias e subcompanhias?", descricao:"<strong>R.: O Regimento Interno é o documento mais importante das companhias e subcompanhias, porque nele é contido penalidades, regras e instruções.</strong>"},
+            ],
+
+				APROVACAO: [
+					 { texto: "<strong><big>EM CASO DE APROVAÇÃO</big></strong>" },
+					 { texto: "Meus parabéns! Você foi aprovado(a) no Curso de Aperfeiçoamento de Praças (CAP)." }, 						 
+					 { texto: "Aprimore seus conhecimentos da documentação e desenvolva sua capacidade argumentativa."},
+					 { texto: "Agora que concluiu o CAP, procure um supervisor (brevê verde) para obter seu PRO." },
+					 { texto: "Acrescente [CAP] no final de sua missão."},					 
+					 { texto: "Lembre-se também de começar a se aprofundar nos documentos da RCC." },
+					 { texto: "Será enviada uma apostila sobre o Curso de Formação de Oficiais." }, 						 
+					 { texto: "Fique atento(a) às suas Mensagens Privadas."},
+					 { texto: "<br>", noCopy: true},
+					 { texto: "<hr>", noCopy: true},                    
+					 { texto: "<strong><big>Título da MP: [PROF] Orientações do CFO [CAP]</big></strong>", noCopy: true},
+					 { texto: "Para enviar a Mensagem Privada mais rapidamente: <a href='https://www.policiarcc.com/privmsg?mode=post'>clique aqui</a>", noCopy: true},
+					 { texto: "<br>", noCopy: true},
+					 { texto: "<hr>", noCopy: true},
+					 { texto: "<strong><big>CODE DA MP</big>", noCopy: true},
+					 { texto: "[Verifique se o(a) policial acrescentou [CAP] em sua missão.]", noCopy: true},
+					 { texto: "[Em seguida, poste o relatório no formulário da companhia e a conclusão do CAP no RCC System.]</strong>", noCopy: true}						 
+
+			],
+			
+				REPROVACAO: [
+					 { texto: "Infelizmente você foi reprovado(a), mas não desista!"},
+					 { texto: "Refaça a aula novamente e aprimore sua ortografia, já que é um aspecto importantíssimo para a polícia RCC." }, 						 
+					 { texto: "<strong>[Em seguida, poste o relatório no formulário da companhia.]</strong>", noCopy: true},
+					 
+			],
+				
+                 POSTAGEM: [
+                    { link: "https://docs.google.com/forms/d/e/1FAIpQLSeBNvGxEX3u_pcO7cVxZ6Z-7U_-N0v95i37mHbOa3LKIX5ODw/viewform", titulo: "Poste sua aula clicando aqui." },
+                    { link: "https://system.policercc.com.br/companhia/professores", titulo: "Poste sua aula no System aqui." },	
+                    { link: "https://docs.google.com/spreadsheets/d/1L5t72kbIlRnHRp_OaOMbHdDjkOy_3QlGJdYqarhh-ac/edit?gid=1450221199#gid=1450221199", titulo: "Para conferir sua postagem." },
+                    { link: "https://docs.google.com/forms/d/e/1FAIpQLSfoB27_eFNrEIZ_esGVs1mcrm1nLiVTcuRhXPJVsVgnmT0qZQ/viewform", titulo: "Poste sua correção aqui." },
+                ],
+            },
+
+			CRO: {
+                INTRODUCAO: [
+                    { texto: "<strong><big>INTRODUÇÃO</big></strong>" },
+                    { texto: "Saudações! Sou membro dos Professores e irei aplicar o Curso de Revisão Ortográfica." },
+                    { texto: "Por isso, peço-lhe que mantenha a atenção e anote tudo que achar necessário," },
+                    { texto: "pois ao final desta aula haverá um teste." },
+                    { texto: "Se eu sair do jogo, aguarde-me 5 minutos, mas caso não retorne, volte ao batalhão." },
+                    { texto: "Antes de prosseguirmos, você deseja receber o curso pelo Habbo Hotel ou slide? Recomendamos que os" },
+                    { texto: "jogadores via mobile assistam a aula in game, para evitar a saída do quarto/jogo." },
+                    { texto: "<strong>[Aguarde que o(a) policial responda. Caso ele(a) tiver dúvidas, retire-as.]</strong>", noCopy: true },
+                    { texto: "<strong>[Caso o(a) policial opte pelo curso via slide, continue a partir do spoiler abaixo.]</strong>", noCopy: true },
+                    { texto: "<strong>[Caso o(a) policial opte pelo curso via Habbo Hotel, continue a partir do spoiler: Aula via Habbo Hotel.]</strong>", noCopy: true },
+                ],
+                SLIDE: [
+                    { texto: "Para acessar o slide, digite em seu navegador: bit(ponto)ly/prof-cro" },
+                    { texto: "Lembre-se de trocar o (ponto) por um ponto. Quando encerrar a leitura," },
+                    { texto: "peço que me avise para prosseguirmos." },
+                    { texto: "<strong>[Aguarde o(a) policial encerrar a leitura.]</strong>", noCopy: true },
+                    { texto: "Alguma dúvida?" },
+                    { texto: "<strong>[Aguarde que o(a) policial responda. Se ele(a) tiver com dúvidas, retire-as.]</strong>", noCopy: true },
+                    { texto: "[Após retirar a(s) dúvida(s), você deve continuar a aplicação da aula a partir do trecho: TESTE TEÓRICO.]</strong>", noCopy: true },
+                ],
+                JOGO: [
+                    { texto: "<strong><big>INTERPRETAÇÃO TEXTUAL</big></strong>" },
+                    { texto: "Observe a cena representada pelos bot's ao lado. Em seguida, interprete-a com base no que entendeu." },
+                    { texto: "<strong>[Clique em 'usar' na Alavanca de Chão 2 apenas uma vez. Caso o(a) policial queira rever a cena, faça o mesmo procedimento.]</strong>", noCopy: true },
+                    { texto: "A partir da sua interpretação, o que promove o efeito de humor na cena?" },
+                    { texto: "<strong>[Aguarde a resposta do(a) policial. Se o(a) policial não souber responder, NÃO tem nenhum problema. Ajude-o a interpretar a cena.]</strong>", noCopy: true },
+                    { texto: "Nessa encenação, a ambiguidade produz o efeito de humor, já que possui divergências entre" },
+                    { texto: "os entendimentos dos interlocutores (homem urbano e homem rural) a respeito do verbo 'ir'." },
+                    { texto: "<strong>[Após repassar esse trecho, prossiga com o script e inicie a explicação do conteúdo.]</strong>", noCopy: true },
+                    { texto: "<strong><big>TRECHO TEÓRICO</big></strong>" },
+                    { texto: "A interpretação integra uma série de fatores, como a leitura e a busca diária por informações," },
+                    { texto: "condicionando as informações a um contexto e aos elementos de comunicação verbal e não verbal," },
+                    { texto: "além disso, questões gramaticais: a pontuação, a acentuação, a conjugação e a concordância verbal." },
+                    { texto: "Como leitor, é necessário dar sentido e significado ao que lê ou observa. Desse modo," },
+                    { texto: "é preciso processar, criticar e avaliar o que está sendo lido, tendo em vista que são etapas que" },
+                    { texto: "facilitam a metodologia da interpretação textual." },
+                    { texto: "O contexto é de grande importância para interpretar. A análise da contextualização," },
+                    { texto: "considerando aspectos como regionalidade, gírias, profissão," },
+                    { texto: "podem atribuir diversos efeitos ao texto a fim de ressignificá-lo." },
+                    { texto: "Alguma dúvida?" },
+                    { texto: "<strong>[Aguarde que o(a) policial responda. Se ele(a) tiver com dúvidas, retire-as.]</strong>", noCopy: true },
+                    { texto: "Antes de prosseguirmos, você deseja receber o curso pelo Habbo Hotel ou slide? Recomendamos que os" },
+                    { texto: "jogadores via mobile assistam a aula in game, para evitar a saída do quarto/jogo." },
+                    { texto: "<strong>[Aguarde que o(a) policial responda. Caso ele(a) tiver com dúvidas, retire-as.]</strong>", noCopy: true },
+                    { texto: "<strong>[Caso o(a) policial opte pelo curso via slide, continue a partir do spoiler abaixo.]</strong>", noCopy: true },
+                    { texto: "<strong>[Caso o(a) policial opte pelo curso via Habbo Hotel, continue a partir do spoiler: Aula via Habbo Hotel.]</strong>", noCopy: true },
+                ],
+                PRATICO: [
+                    { texto: "<strong><big>TESTE PRÁTICO</big></strong>" },
+                    { texto: "O teste consiste em avaliar se você aprendeu o que foi ensinado na aula." },
+                    { texto: "O teste será prático. Para respondê-lo, escreva a frase toda novamente atendendo ao que" },
+                    { texto: "foi solicitado na mensagem visível. Por exemplo:" },
+                    { texto: "Mensagem: Reescreva com 'mas' ou 'mais': Gosto de você, _ acabou." },
+                    { texto: "Você deve responder: Gosto de você, mas acabou." },
+                    { texto: "Vale ressaltar que as frases devem estar totalmente idênticas, considerando" },
+                    { texto: "tanto acentuações, pontuações e maiúsculas. A falta delas considerará a frase incorreta." },
+                    { texto: "Serão realizadas 04 perguntas sobre a aula. O limite de erro é 01 pergunta. Boa sorte!" },
+                    { texto: "<strong>[Clique em 'usar' na Alavanca de Chão 1 apenas uma vez. Após isso, peça que o policial pise no mobi.]</strong>", noCopy: true },
+                    { texto: "Pise no Piso Colorido, por gentileza. Ao pisar, poderá responder o teste." },
+                    { texto: "<strong>[Se houver mais de um(a) policial, mande-os(a) sussurrar com você durante o teste prático.]</strong>", noCopy: true },
+                    { texto: "<strong>[Caso o(a) policial erre uma questão, seja por bug ou falha ao enviar, reconsidere e peça-o(a) que reescreva novamente. Além disso, seja rígido(a) e imparcial no teste prático.]</strong>", noCopy: true },
+                    { texto: "<strong>[Caso o(a) policial tenha dificuldades ou erre uma questão, use de seus conhecimentos para ajudar o militar que errar, sem lhe dar a resposta.]</strong>", noCopy: true },
+                    { texto: "<strong>[Ao ser reprovado(a), o(a) aluno(a) deve dizer o comando perd.y (sem o ponto).]</strong>", noCopy: true },
+                    { texto: "01. Reescreva com 'mais' ou 'mas': Não sou Estella, __ sim Cruella de Vil." },
+                    { descricao: "R.: Não sou Estella, mas sim Cruella de Vil." },
+                    { texto: "02. Reescreva com 'mais' ou 'mas': O que __ quero é ser rei." },
+                    { descricao: "R.: O que mais quero é ser rei." },
+                    { texto: "03. Reescreva com um dos 'porquês': A Supremacia analisou o __ do prejuízo nos valores." },
+                    { descricao: "R.: A Supremacia analisou o porquê do prejuízo nos valores." },
+                    { texto: "04. Reescreva com um dos 'porquês': O capitão Joh está feliz __ foi aprovado no CFO." },
+                    { descricao: "R.: O capitão Joh está feliz porque foi aprovado no CFO." },
+                ],
+                APROVACAO: [
+                    { texto: "Meus parabéns! Você foi aprovado(a) no Curso de Revisão Ortográfica (CRO)." },
+                    { texto: "Lembre-se que a escrita é um meio de comunicação essencial, por isso, sempre" },
+                    { texto: "esteja praticando e lendo. Quaisquer dúvidas sobre ortografia, consulte um professor." },
+                    { texto: "Acrescente '[CRO]' no final de sua missão caso deseje. Lembrando que deve ser de forma separada dos" },
+                    { texto: "cursos obrigatórios. Exemplo: '[CFC/SEG] [CRO]' ou '[API/SEG] [CRO]'," },
+                    { texto: "pois 'CRO' é um curso opcional." },
+                    { texto: "<strong>[Em seguida, poste o relatório no formulário da companhia.]</strong>", noCopy: true },
+                ],
+                REPROVACAO: [
+                    { texto: "Infelizmente você foi reprovado(a), mas não desista!" },
+                    { texto: "Refaça a aula novamente e aprimore sua ortografia, já que é um aspecto importantíssimo para a RCC." },
+                    { texto: "<strong>[Em seguida, poste o relatório no formulário da companhia.]</strong>", noCopy: true },
+                ],
+                POSTAGEM: [
+                    { link: "https://docs.google.com/forms/d/e/1FAIpQLSeBNvGxEX3u_pcO7cVxZ6Z-7U_-N0v95i37mHbOa3LKIX5ODw/viewform", titulo: "Poste sua aula clicando aqui." },
+                    { link: "https://system.policercc.com.br/companhia/professores", titulo: "Poste sua aula no System aqui." },
+                    { link: "https://docs.google.com/spreadsheets/d/1L5t72kbIlRnHRp_OaOMbHdDjkOy_3QlGJdYqarhh-ac/edit?gid=1450221199#gid=1450221199", titulo: "Para conferir sua postagem." },
+                    { link: "https://docs.google.com/forms/d/e/1FAIpQLSfoB27_eFNrEIZ_esGVs1mcrm1nLiVTcuRhXPJVsVgnmT0qZQ/viewform", titulo: "Poste sua correção aqui." },
+                ],
+            },
+			
+			ACL: {
+                INTRODUCAO: [
+                    { texto: "<strong><big>[INTRODUÇÃO]</big></strong>" },
+                    { texto: "Saudações! Consegue sussurrar comigo?", descricao:"[Caso o(a) policial tenha sussurrado, inicie a aplicação a partir da segunda linha. Senão, aguarde ele(a) responder e prossiga, ensinando-o(a) a sussurrar se for necessário.]" },
+                    { texto: "Irei realizar uma Avaliação de Conhecimento Linguístico (ACL). Caso tenha alguma dúvida, acene." },
+                    { texto: "Se eu sair do jogo, me aguarde na recepção." },
+					
+                ],
+				
+				JOGO: [
+                    { texto: "<strong><big>AVALIAÇÃO DE CONHECIMENTO LINGUÍSTICO</big></strong>" },
+                    { texto: "01. Em qual(is) das opções abaixo a letra maiúscula foi empregada corretamente?" },
+                    { texto: "<strong>a)</strong> Vossa excelência chegará a Paris dentro de minutos;", noCopy: true},
+                    { texto: "<strong>b)</strong> Vossa Excelência chegará a Paris dentro de minutos;", noCopy: true},	
+                    { texto: "<strong>c)</strong> A sua voz é como uma paz, como a de Caetano Veloso;", noCopy: true },
+                    { texto: "<strong>d)</strong> Os dados foram retirados do instituto brasileiro de Geografia e Estatística.", noCopy: true },
+                    { texto: "<strong>R.: Alternativas 'B' e 'C'.</strong>", descricao:"[Caso o(a) policial erre a resposta, você deve, obrigatoriamente, enviar a explicação abaixo.]" },
+                    { texto: "<strong>Explicação:</strong> Para o uso da letra maiúscula," },
+                    { texto: "tenha em mente a variação de acordo com as palavras."},
+                    { texto: "Sendo assim, utiliza-se em: início das frases, substantivos próprios," },
+                    { texto: "festas e datas comemorativas, siglas, símbolos," },
+					{ texto: "abreviaturas, nomes de instituições e repartições."},
+					{ texto: "<br>", noCopy: true},
+					{ texto: "<hr>", noCopy: true}, 										
+                    { texto: "02. Escolha a opção que contém a escrita gramatical correta."},					
+					{ texto: "<strong>a)</strong> Quando chove muito, pode a ver enchentes na cidade;"},                    
+					{ texto: "<strong>b)</strong> São bem parecidos ou, pelo contrário, não tenham nada haver um com o outro;" },
+                    { texto: "<strong>c)</strong> Há bastante tempo nos afastamos;" },
+
+                    { texto: "<strong>d)</strong> A nossa situação não tem nada aver." },
+                    { texto: "<strong>R.: Alternativa 'C'.</strong>", descricao:"[Caso o(a) policial erre a resposta, você deve, obrigatoriamente, enviar a explicação abaixo.]"},										
+                    { texto: "<strong>Explicação:</strong> 'A ver' indica uma afinidade entre duas coisas." },
+                    { texto: "usado em respostas e substituído pela palavra 'pois'." },
+					{ texto: "Haver, por ser um verbo, é completamente diferente de 'a ver'"},
+					{ texto: "e pode ser representado pelo 'há', onde deve ser usado quando"},
+					{ texto: "o verbo haver é impessoal (sem sujeito) quando seu sentido é de existir."},
+					{ texto: "Pode indicar tempo passado."},  					
+					{ texto: "<br>", noCopy: true},
+					{ texto: "<hr>", noCopy: true}, 					
+                    { texto: "03. 'Fui ao mercado comprar melão, mamão e pera'. Nesta frase,"},
+                    { texto: "a vírgula foi empregada pois:"},	
+                    { texto: "<strong>a)</strong> É uma locução adverbial presente e necessita de separação das orações;" },
+                    { texto: "<strong>b)</strong> Está enumerando elementos como as frutas;" },
+                    { texto: "<strong>c)</strong> Constitui-se a explicação da razão para ter ido ao mercado;" },
+                    { texto: "<strong>d)</strong> Torna-se preciso a pausa na leitura para conseguir respirar." },
+                    { texto: "<strong>R.: Alternativa 'B'.</strong>", descricao:"[Caso o(a) policial erre a resposta, você deve, obrigatoriamente, enviar a explicação abaixo.]"},
+                    { texto: "<strong>Explicação:</strong> A vírgula é um sinal de pontuação e exerce diversas funções," },
+                    { texto: "como a separação entre dois elementos, pausa na leitura, entre outras." },
+					{ texto: "<br>", noCopy: true},
+					{ texto: "<hr>", noCopy: true}, 					
+					{ texto: "04. 'Os sinais de pontuação podem ter diversas finalidades, sendo entonação, pausa,"},
+					{ texto: "pergunta entre outras.' Corrija a frase, pontuando-a de forma correta."},
+					{ texto: "<strong>a)</strong> Ontem você faltou à aula, por quê!", descricao:"R.: 'Ontem você faltou à aula, por quê?'"},
+                    { texto: "<strong>[Caso o(a) policial erre a resposta, você deve, obrigatoriamente, enviar a explicação abaixo.]</strong>", noCopy: true},
+					{ texto: "<strong>Explicação:</strong> A frase acima é uma pergunta, então o correto é o uso da interrogação."},                    
+					{ texto: "<strong>b)</strong> Orlando, poderia me dizer, se você vai ao show amanhã?", descricao:"R.: 'Orlando, poderia me dizer se você vai ao show amanhã?'"},
+                    { texto: "<strong>[Caso o(a) policial erre a resposta, você deve, obrigatoriamente, enviar a explicação abaixo.]</strong>", noCopy: true},
+                    { texto: "<strong>Explicação:</strong> A vírgula após o 'dizer' não está sendo usada corretamente." },					
+					{ texto: "<strong>c)</strong> Nossa João, olhe como o dia está ensolarado ?", descricao:"R.: 'Nossa, João, olhe como o dia está ensolarado!'"},
+                    { texto: "<strong>[Caso o(a) policial erre a resposta, você deve, obrigatoriamente, enviar a explicação abaixo.]</strong>", noCopy: true},
+					{ texto: "<strong>Explicação:</strong> A utilização da interrogação está sendo usada incorretamente," },
+					{ texto: "visto que não seria uma frase interrogativa, mas sim uma frase afirmativa."},
+					{ texto: "A vírgula após 'Nossa' é necessária para separar o vocativo do restante da frase."}, 
+					{ texto: "<br>", noCopy: true},
+					{ texto: "<hr>", noCopy: true}, 					
+					{ texto: "05. A seguinte frase está correta? Eu nasci há dez mil anos atrás.", descricao:"R.: A resposta é 'não'."},
+                    { texto: "<strong>[Caso o(a) policial erre a resposta, você deve, obrigatoriamente, enviar a explicação abaixo.]</strong>", noCopy: true},	
+					{ texto: "Explicação: O verbo 'haver' já transmite a ideia de passado,"},
+                    { texto: "sendo assim, a expressão 'atrás' gera gramaticalmente o sentido de pleonasmo," },
+                    { texto: "também conhecido como redundância. É como dizer: 'subir para cima'." }
+                    
+                ],
+
+				APROVACAO: [
+					 { texto: "<strong><big>CONCLUSÃO</big></strong>" },
+					 { texto: "A escrita é um meio de comunicação essencial para a sua carreira," }, 						 
+					 { texto: "por isso é importante sempre buscar formas de melhorar esse quesito."},
+					 { texto: "Todos os membros da companhia dos Professores estarão sempre à" },
+					 { texto: "disposição para lhe ajudar em suas dúvidas ortográficas."},					 
+					 { texto: "Caso seja cabo+/inspetor+ e tenha interesse em continuar melhorando sua ortografia," },
+					 { texto: "procure por um professor e peça pelo Curso de Revisão Ortográfica (CRO)." }, 						 
+					 { texto: "<strong>[Em seguida, poste o relatório no formulário da companhia.]</strong>", noCopy: true}
+	
+			],
+
+				
+                 POSTAGEM: [
+                    { link: "https://docs.google.com/forms/d/e/1FAIpQLSeBNvGxEX3u_pcO7cVxZ6Z-7U_-N0v95i37mHbOa3LKIX5ODw/viewform", titulo: "Poste sua aula clicando aqui." },
+                    { link: "https://system.policercc.com.br/companhia/professores", titulo: "Poste sua aula no System aqui." },	
+                    { link: "https://docs.google.com/spreadsheets/d/1L5t72kbIlRnHRp_OaOMbHdDjkOy_3QlGJdYqarhh-ac/edit?gid=1450221199#gid=1450221199", titulo: "Para conferir sua postagem." },
+                    { link: "https://docs.google.com/forms/d/e/1FAIpQLSfoB27_eFNrEIZ_esGVs1mcrm1nLiVTcuRhXPJVsVgnmT0qZQ/viewform", titulo: "Poste sua correção aqui." },
+                ],
+            }
+			
+			
+			
+			
+        };
+
+        var seletor = document.getElementById("seletor");
+        var tipoConteudo = document.getElementById("tipoConteudo");
+        var textoDiv = document.getElementById("texto");
+
+        seletor.addEventListener("change", function() {
+            var opcaoSelecionada = this.value;
+            var tipoSelecionado = tipoConteudo.value;
+            var texto = scripts[opcaoSelecionada][tipoSelecionado];
+            adicionarTexto(texto);
+        });
+
+        tipoConteudo.addEventListener("change", function() {
+            var opcaoSelecionada = seletor.value;
+            var tipoSelecionado = this.value;
+            var texto = scripts[opcaoSelecionada][tipoSelecionado];
+            adicionarTexto(texto);
+        });
+
+        document.getElementById('ok-button').addEventListener('click', function() {
+            document.getElementById('welcome-card').style.display = 'none';
+        });
+
+        function adicionarLink(link, titulo) {
+            return "<a href='" + link + "' target='_blank'>" + (titulo ? titulo : link) + "</a>";
+        }
+
+        function updateTime() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+
+            hours = ("0" + hours).slice(-2);
+            minutes = ("0" + minutes).slice(-2);
+            seconds = ("0" + seconds).slice(-2);
+
+            document.getElementById('clock').textContent = hours + ":" + minutes + ":" + seconds;
+
+            setTimeout(updateTime, 1000);
+        }
+
+        window.onload = updateTime;
+
+        function adicionarTexto(texto) {
+            var html = "";
+            texto.forEach(function(item) {
+                if (item.texto) {
+                    if (item.noCopy) {
+                        html += "<div class='linha-texto'><span class='texto-principal'>" + item.texto + "</span><div class='descricao'>" + (item.descricao ? item.descricao : "") + "</div></div>";
+                    } else {
+                        html += "<div class='linha-texto'><span class='texto-principal'>" + item.texto + "</span><button class='botao-copiar' onclick='copiarTexto(this)'>Copiar</button><div class='descricao'>" + (item.descricao ? item.descricao : "") + "</div></div>";
+                    }
+                } else if (item.link) {
+                    html += "<div class='linha-texto'>" + adicionarLink(item.link, item.titulo) + "</div>";
+                }
+            });
+            textoDiv.innerHTML = html;
+        }
+
+        function copiarTexto(botao) {
+            var texto = botao.previousElementSibling.textContent;
+            navigator.clipboard.writeText(texto)
+                .then(function() {
+                    botao.innerHTML = "Copiado!";
+                    setTimeout(function() {
+                        botao.innerHTML = "Copiar";
+                    }, 1000);
+                })
+                .catch(function(error) {
+                    console.error('Erro ao copiar texto:', error);
+                });
+        }
+    </script>
+</body>
+</html>
